@@ -14,8 +14,13 @@ JOKE = (
     "and blamed me in the commit message."
 )
 
+# Bounty limit: the joke must be one line of 1-280 characters.
+MAX_CHARS = 280
+
 
 def main() -> None:
+    if not 1 <= len(JOKE) <= MAX_CHARS:
+        raise ValueError(f"joke must be 1-{MAX_CHARS} chars, got {len(JOKE)}")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(JOKE)
